@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>TTS</title>
+</head>
+<body>
+<textarea id="text"></textarea>
+<button id="btn_submit">tts</button>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    var btn_sub = $('#btn_submit');
+    var txt = $('#text');
+    $(function () {
+        btn_sub.click(function () {
+            $.post('tts',{'text':txt.val()},function (data) {
+                alert(data);
+            })
+        });
+    });
+</script>
+</body>
+</html>

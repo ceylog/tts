@@ -1,0 +1,7 @@
+server:
+  port: 8000
+tts:
+  appId: 591b9cc9
+spring:
+  thymeleaf:
+    cache: false
