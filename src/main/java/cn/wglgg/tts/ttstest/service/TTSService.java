@@ -1,5 +1,6 @@
 package cn.wglgg.tts.ttstest.service;
 
+import cn.wglgg.tts.ttstest.util.PCMUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -46,9 +47,9 @@ public class TTSService {
             voiceName = "vinn";
         }
         mTts.setParameter(SpeechConstant.VOICE_NAME, voiceName);//设置发音人
-        String fileName = sdf.format(new Date(System.currentTimeMillis())) + ".pcm";
+        String fileName = sdf.format(new Date(System.currentTimeMillis()));
 
-        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, audioSavePath + fileName);
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, audioSavePath + fileName + ".pcm");
         mTts.startSpeaking(txt, new SynthesizerListener() {
             @Override
             public void onBufferProgress(int i, int i1, int i2, String s) {
@@ -78,6 +79,12 @@ public class TTSService {
             @Override
             public void onCompleted(SpeechError speechError) {
                 if (null == speechError) {
+
+                    try {
+                        PCMUtil.convertAudioFiles(audioSavePath + fileName+".pcm",audioSavePath+"\\wav\\" + fileName+".wav");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("成功");
                 } else {
                     System.out.println(speechError);
