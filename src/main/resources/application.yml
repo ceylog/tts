@@ -1,7 +1,10 @@
 server:
   port: 8000
+
 tts:
   appId: 591b9cc9
+  audioSavePath: D:\\tts\\
+
 spring:
   thymeleaf:
     cache: false

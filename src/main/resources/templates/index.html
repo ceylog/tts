@@ -1,23 +1,112 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="tts" />
+    <meta name="keywords" content="tts" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TTS</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" />
 </head>
 <body>
-<textarea id="text"></textarea>
-<button id="btn_submit">tts</button>
+
+<form class="am-form">
+    <fieldset>
+        <legend>Welcome TTS System</legend>
+        <div class="am-form-group">
+            <label for="text">文本</label>
+            <textarea id="text" rows="5"></textarea>
+        </div>
+        <div class="am-form-group">
+            <label for="voiceName">声音</label>
+            <select id="voiceName">
+                <option value="vinn">楠楠</option>
+                <option value="vixx">小新</option>
+                <option value="xiaoyan">小燕</option>
+                <option value="xiaoyu">小宇</option>
+                <option value="vixy">小研</option>
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+        <p>
+            <button id="btn_submit" type="button" class="am-btn am-btn-primary btn-loading-example">发 送</button>
+        </p>
+    </fieldset>
+</form>
+
+<table class="am-table am-table am-table-striped am-table-hover">
+    <thead>
+    <tr>
+        <th>文本</th>
+        <th>声音</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="list">
+
+    </tbody>
+</table>
+
+<audio src="getAudio/20170519010736628.pcm" controls="controls">
+    您的浏览器不支持 audio 标签。
+</audio>
+
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 <script>
     var btn_sub = $('#btn_submit');
-    var txt = $('#text');
+    var text = $('#text');
+    var voiceName = $("#voiceName");
+    var list = $('#list');
+    var logData = [];
     $(function () {
+        var lsd = localStorage.getItem("logData");
+        if(lsd){
+            logData = JSON.parse(lsd);
+            renderGrid();
+        }
+
         btn_sub.click(function () {
-            $.post('tts',{'text':txt.val()},function (data) {
-                alert(data);
+            btn_sub.button('loading')
+            var dt = {'text': text.val(), 'voiceName': voiceName.val()};
+            $.post('tts', dt, function (data) {
+                console.log(data.code)
+                if(0==data.code){
+                    dt.status=0;
+                    dt.fileName = data.data.fileName;
+                }else{
+                    dt.status=-1;
+                }
+                logData.push(dt);
+                renderGrid();
+                btn_sub.button('reset');
+                localStorage.setItem("logData",JSON.stringify(logData));
+
             })
         });
     });
+    function renderGrid() {
+        list.empty();
+        if(logData){
+            logData.forEach(function (val, ind, arr) {
+                //console.log(val)
+                var stt = "failure";
+                var sty = "am-danger";
+                if(val.status==0){
+                    stt = "success";
+                    sty = 'am-success';
+                }
+                var tr="<tr class="+sty+"><td>"+
+                    val.text+"</td><td>"
+                    +val.voiceName+"</td><td>"+
+                    stt+"</td><td>"+
+                    val.fileName+"</td></tr>";
+                list.append(tr);
+            })
+        }
+    }
 </script>
 </body>
 </html>
