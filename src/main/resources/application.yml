@@ -8,3 +8,13 @@ tts:
 spring:
   thymeleaf:
     cache: false
+  kafka:
+      bootstrap-servers: www.wglgg.cn:9092
+      template:
+        default-topic: msg2tts
+      consumer:
+        group-id: wglgg
+      listener:
+        concurrency: 3
+      producer:
+        batch-size: 1000

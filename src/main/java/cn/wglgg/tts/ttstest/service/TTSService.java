@@ -39,7 +39,7 @@ public class TTSService {
         mTts = SpeechSynthesizer.createSynthesizer();
         mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速，范围 0~100
         mTts.setParameter(SpeechConstant.PITCH, "50");//设置语调，范围 0~100
-        mTts.setParameter(SpeechConstant.VOLUME, "100");//设置音量，范围 0~100
+        mTts.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围 0~100
         sdf = new SimpleDateFormat("YYYYMMddHHmmssSSS");
     }
 
