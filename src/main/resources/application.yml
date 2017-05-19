@@ -14,6 +14,11 @@ spring:
         default-topic: msg2tts
       consumer:
         group-id: wglgg
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-serializer: org.apache.kafka.common.serialization.StringDeserializer
       listener:
         concurrency: 3
       producer:
