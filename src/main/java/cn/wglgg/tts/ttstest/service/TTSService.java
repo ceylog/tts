@@ -1,14 +1,15 @@
 package cn.wglgg.tts.ttstest.service;
 
 import cn.wglgg.tts.ttstest.util.PCMUtil;
+import com.iflytek.cloud.speech.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import com.iflytek.cloud.speech.*;
-
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class TTSService {
     @Value("${tts.audioSavePath}")
     private String audioSavePath;
 
-    SimpleDateFormat sdf;
+    private SimpleDateFormat sdf;
     /*static {
         System.out.println(System.getProperty("user.dir"));
         String LIBFILENAME = "C:\\Users\\za-wanggang\\Desktop\\java_voice_xunfei\\lib\\msc64.dll";

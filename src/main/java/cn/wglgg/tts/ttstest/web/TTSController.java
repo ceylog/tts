@@ -32,7 +32,7 @@ public class TTSController {
     public String tts(String text,String voiceName){
         String fileName = ttsService.tts(text,voiceName);
         System.out.println("return ok");
-        return "{status:'success',code:0,data:{fileName:'"+fileName+"'}}";
+        return "{\"status\":\"success\",\"code\":0,\"data\":{\"fileName\":\""+fileName+"\"}}";
     }
 
     @GetMapping("/getAudio/{fileName}")
