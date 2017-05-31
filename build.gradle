@@ -34,7 +34,8 @@ configurations {
 dependencies {
     compile files('libs/lib/Msc.jar')
     compile files('libs/lib/json-jena-1.0.jar')
-    compile('org.springframework.kafka:spring-kafka')
+    //compile('org.springframework.kafka:spring-kafka')
+    compile 'org.springframework.boot:spring-boot-starter-activemq'
     optional("org.springframework.boot:spring-boot-configuration-processor")
     optional("org.springframework.boot:spring-boot-devtools")
     compile('org.springframework.boot:spring-boot-starter-web')

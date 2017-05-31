@@ -2,7 +2,6 @@ package cn.wglgg.tts.ttstest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.EnableKafka;
 
 /**
  * 类AppLauncher的实现描述：TODO 类实现描述
@@ -10,7 +9,7 @@ import org.springframework.kafka.annotation.EnableKafka;
  * @author za-wanggang 2017/5/18 17:46
  */
 @SpringBootApplication
-@EnableKafka
+//@EnableKafka
 public class AppLauncher {
 
     public static void main(String[] args){

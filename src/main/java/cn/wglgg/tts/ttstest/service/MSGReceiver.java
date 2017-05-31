@@ -1,7 +1,7 @@
 package cn.wglgg.tts.ttstest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +15,8 @@ public class MSGReceiver {
     @Autowired
     private TTSService ttsService;
 
-    @KafkaListener(topics = "msg2tts")
+    //@KafkaListener(topics = "msg2tts")
+    @JmsListener(destination = "wglgg.msg2tts")
     public void processMessage(String content) {
         System.out.println("<<< "+content);
         ttsService.tts(content,null);

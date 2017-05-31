@@ -8,18 +8,22 @@ tts:
 spring:
   thymeleaf:
     cache: false
-  kafka:
-      bootstrap-servers: www.wglgg.cn:9092
-      template:
-        default-topic: msg2tts
-      consumer:
-        group-id: wglgg
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      producer:
-        key-serializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-serializer: org.apache.kafka.common.serialization.StringDeserializer
-      listener:
-        concurrency: 3
-      producer:
-        batch-size: 1000
+  activemq:
+    broker-url: tcp://localhost:61613
+    user: admin
+    password: password
+#  kafka:
+#      bootstrap-servers: www.wglgg.cn:9092
+#      template:
+#        default-topic: msg2tts
+#      consumer:
+#        group-id: wglgg
+#        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      producer:
+#        key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+#        value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+#      listener:
+#        concurrency: 3
+#      producer:
+#        batch-size: 1000
