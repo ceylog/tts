@@ -79,7 +79,7 @@ public class TTSService {
 
             @Override
             public void onCompleted(SpeechError speechError) {
-                if (null == speechError) {
+                /*if (null == speechError) {
 
                     try {
                         PCMUtil.convertAudioFiles(audioSavePath + fileName+".pcm",audioSavePath+"\\wav\\" + fileName+".wav");
@@ -89,7 +89,7 @@ public class TTSService {
                     System.out.println("成功");
                 } else {
                     System.out.println(speechError);
-                }
+                }*/
             }
 
             @Override
