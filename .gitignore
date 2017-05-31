@@ -3,6 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 !msc32.dll
 !msc64.dll
+/msc/
 
 ### STS ###
 .apt_generated
